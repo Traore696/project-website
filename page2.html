@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .result-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .result-container h2 {
+            margin-bottom: 20px;
+        }
+        .result-container p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h2>Résultats du formulaire</h2>
+        <p id="nom"></p>
+        <p id="prenom"></p>
+    </div>
+
+    <script>
+        // Fonction pour récupérer les paramètres de l'URL
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const regex = /([^&=]+)=([^&]*)/g;
+            let m;
+            while (m = regex.exec(queryString)) {
+                params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+            }
+            return params;
+        }
+
+        // Récupérer les paramètres et les afficher
+        window.onload = function() {
+            const params = getQueryParams();
+            document.getElementById('nom').textContent = 'Nom : ' + (params.nom || 'Non fourni');
+            document.getElementById('prenom').textContent = 'Prénom : ' + (params.prenom || 'Non fourni');
+        };
+    </script>
+</body>
+</html>
